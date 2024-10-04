@@ -19,15 +19,14 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    while (True) {
-        let YourList = prompt("What will be your move...? (Type rock, paper, or scissors)")
-        alert("You Chose " + YourList)
+    while (true) {
+        YourList = prompt("What will be your move...? (Type rock, paper, or scissors)")
         if (YourList.toUpperCase() != "ROCK" && YourList.toUpperCase() != "PAPER" && YourList.toUpperCase() != "SCISSORS") {
             console.log("That wasn't an option.") 
             alert("That wasn't an option.") 
-            continue
+            continue;
         }
-        break
+        break;
     }
     return YourList
 }
