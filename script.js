@@ -2,6 +2,34 @@ humanScore = 0
 compScore = 0
 Games = 0
 
+const RPSBody = document.querySelector("body");
+RPSBody.setAttribute("style","background-color: rgb(255,200,200);");
+
+const ButtonHolder = document.createElement("div");
+ButtonHolder.setAttribute("style","display:flex; justify-items: center; gap: 50px;");
+ButtonHolder.setAttribute("class","ButtonGroup")
+RPSBody.appendChild(ButtonHolder)
+
+const RockButton = document.createElement("button");
+RockButton.setAttribute("id","rock");
+RockButton.textContent = "Rock";
+ButtonHolder.appendChild(RockButton);
+
+const PaperButton = document.createElement("button");
+PaperButton.setAttribute("id","paper");
+PaperButton.textContent = "Paper";
+ButtonHolder.appendChild(PaperButton);
+
+const ScissorsButton = document.createElement("button");
+ScissorsButton.setAttribute("id","scissors");
+ScissorsButton.textContent = "Scissors";
+ButtonHolder.appendChild(ScissorsButton);
+
+AllChoices = document.querySelectorAll(".ButtonGroup button"); 
+AllChoices.forEach((item) => {
+    item.setAttribute("style","color: white; flex: 1; background-color: green; border-radius: 5px; margin: 20px; padding: 20px; font-size: 40px; font-weight: bold;");
+})
+
 function getComputerChoice() {
     let ComputerChoice = ""
     ComputerChooser = Math.random()
@@ -62,29 +90,6 @@ else {
     console.log("You lost lmfao")
     alert("You lost lmfao")
 }
-
-const RPSBody = document.querySelector("#alsotesting");
-// RPSBody.setAttribute("style","background-color: red;");
-
-const RockButton = document.createElement("button");
-RockButton.setAttribute("id","rock");
-RockButton.textContent = "Rock";
-RPSBody.appendChild(RockButton);
-
-/*const PaperButton = document.createElement("button");
-PaperButton.setAttribute("id","paper");
-PaperButton.textContent = "Paper";
-RPSBody.appendChild(PaperButton);
-
-const ScissorsButton = document.createElement("button");
-ScissorsButton.setAttribute("id","scissors");
-ScissorsButton.textContent = "Scissors";
-RPSBody.appendChild(ScissorsButton);
-
-AllChoices = document.querySelectorAll("button"); */
-// AllChoices.setAttribute("style","background-color: green; color: white; font-size: 20px; border-radius: 2px; border: solid 2px white;");
-
-
 
 
 
