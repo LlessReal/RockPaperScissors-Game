@@ -63,4 +63,30 @@ else {
     alert("You lost lmfao")
 }
 
+const RPSBody = document.querySelector("#alsotesting");
+// RPSBody.setAttribute("style","background-color: red;");
+
+const RockButton = document.createElement("button");
+RockButton.setAttribute("id","rock");
+RockButton.textContent = "Rock";
+RPSBody.appendChild(RockButton);
+
+/*const PaperButton = document.createElement("button");
+PaperButton.setAttribute("id","paper");
+PaperButton.textContent = "Paper";
+RPSBody.appendChild(PaperButton);
+
+const ScissorsButton = document.createElement("button");
+ScissorsButton.setAttribute("id","scissors");
+ScissorsButton.textContent = "Scissors";
+RPSBody.appendChild(ScissorsButton);
+
+AllChoices = document.querySelectorAll("button"); */
+// AllChoices.setAttribute("style","background-color: green; color: white; font-size: 20px; border-radius: 2px; border: solid 2px white;");
+
+
+
+
+
+
 
