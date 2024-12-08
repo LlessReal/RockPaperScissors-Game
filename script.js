@@ -6,7 +6,7 @@ const RPSBody = document.querySelector("body");
 RPSBody.setAttribute("style","background-color: rgb(255,200,200);");
 
 const ButtonHolder = document.createElement("div");
-ButtonHolder.setAttribute("style","display:flex; justify-items: center; gap: 50px;");
+ButtonHolder.setAttribute("style","display: flex;");
 ButtonHolder.setAttribute("class","ButtonGroup")
 RPSBody.appendChild(ButtonHolder)
 
@@ -27,7 +27,14 @@ ButtonHolder.appendChild(ScissorsButton);
 
 AllChoices = document.querySelectorAll(".ButtonGroup button"); 
 AllChoices.forEach((item) => {
-    item.setAttribute("style","color: white; flex: 1; background-color: green; border-radius: 5px; margin: 20px; padding: 20px; font-size: 40px; font-weight: bold;");
+    item.setAttribute("style","color: white; background-color: green;  margin: 20px; padding: 20px; font-size: 40px; font-weight: bold; flex: 1 1 auto; display: flex; justify-content: center; flex-wrap: wrap; width: 20%;");
+    item.addEventListener("click", () => {
+       const ChosenMove = item.textContent;
+       alert(ChosenMove)
+    })
+    item.addEventListener("mouseover", () => {
+        item.style.cursor = "pointer";
+     })
 })
 
 function getComputerChoice() {
