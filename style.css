@@ -26,7 +26,7 @@ button.rainbow {
 }
 button.gray {
     animation: rainbowtext 3s linear infinite;
-    animation: graymoment 0.2s linear forwards;
+    animation: graymoment 2s linear forwards;
 }
 
 @keyframes graymoment {
