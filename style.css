@@ -11,10 +11,80 @@ body {
 }
 
 button {
-    transition: 0.4s;
+    flex: 1 1 auto; display: flex; justify-content: center; flex-wrap: wrap; 
+    font-size: 40px; font-weight: bold; 
+    color: white; background-color: green;  
+    width: 20%; padding: 20px; margin: 20px; 
     border: groove 10px gold;
     border-radius: 20%;
+    transition: 0.4s;
+}
+button.rainbow {
+    animation: rainbowtext 3s linear infinite;
+    text-shadow: 0 0 20px red;
+    transition: 0.4s;
+}
+button.gray {
+    animation: rainbowtext 3s linear infinite;
+    animation: graymoment 0.2s linear forwards;
+}
+
+@keyframes graymoment {
+    0% {
+        color: red; text-shadow: 0 0 20px red; filter: grayscale(0%);
+    }
+    14% {
+        color: orange; text-shadow: 0 0 20px orange;
+    }
+    28% {
+        color: yellow; text-shadow: 0 0 20px yellow;
+    }
+    50% {
+        color: cyan; text-shadow: 0 0 20px cyan;
+    }
+    75% {
+        color: rgb(184, 53, 74); text-shadow: 0 0 20px rgb(184, 53, 74);
+    }
+    100% {
+        color: red; text-shadow: 0 0 20px red; filter: grayscale(100%);
+    }
+}
+
+@keyframes rainbowtext {
+    0% {
+        color: red; text-shadow: 0 0 20px red;
+    }
+    14% {
+        color: orange; text-shadow: 0 0 20px orange;
+    }
+    28% {
+        color: yellow; text-shadow: 0 0 20px yellow;
+    }
+    50% {
+        color: cyan; text-shadow: 0 0 20px cyan;
+    }
+    75% {
+        color: rgb(184, 53, 74); text-shadow: 0 0 20px rgb(184, 53, 74);
+    }
+    100% {
+        color: red; text-shadow: 0 0 20px red;
+    }
 }
 button:hover {
     box-shadow: 0 0 20px 10px yellow inset;
+}
+
+div {
+    animation: largertext 0.7s ease-out;
+}
+@keyframes largertext {
+    0% {
+        transform: scale(0);
+    }
+    66% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
