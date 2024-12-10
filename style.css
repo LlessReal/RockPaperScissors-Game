@@ -74,9 +74,10 @@ button:hover {
     box-shadow: 0 0 20px 10px yellow inset;
 }
 
-div {
+.popup {
     animation: largertext 0.7s ease-out;
 }
+
 @keyframes largertext {
     0% {
         transform: scale(0);

@@ -5,11 +5,14 @@ RPSBody.setAttribute("style","background-color: rgb(255,200,200);"); // Changes 
 
 const GameHolder = document.createElement("div"); // Box that holds messenger text & buttons (the game basically)
 GameHolder.setAttribute("style","display: flex; flex-direction: column; align-items: center;"); // messenger text on top of buttons, all items centered
+GameHolder.setAttribute("class","popup")
 RPSBody.appendChild(GameHolder) // adds it in
 
 const Messenger = document.createElement("p") // The messenger text in question
 Messenger.setAttribute("style","color: green; font-size: 40px;")
+Messenger.setAttribute("class","popup")
 GameHolder.appendChild(Messenger)
+const FinalMessage = document.createElement("p") // The messenger text in question
 
 const ButtonHolder = document.createElement("div"); // Button holder
 ButtonHolder.setAttribute("style","display: flex;"); // Flex to make them all the same size
@@ -28,8 +31,9 @@ const ScissorsButton = document.createElement("button");
 ScissorsButton.textContent = "Scissors";
 ButtonHolder.appendChild(ScissorsButton);
 
+Messenger.textContent = "What will be your move...?"
+
 const startfunction = function() {
-    Messenger.textContent = "What will be your move...?"
     document.querySelectorAll("#buttongroup button").forEach((item) => { // Selects all buttons in the 2nd button holder + goes thru each of them
         item.setAttribute("class","rainbow")
         PointAnim = function() {item.style.cursor = "pointer"; }
@@ -40,31 +44,56 @@ const startfunction = function() {
         item.addEventListener("mouseover", PointAnim); // When you move over the buttons
         item.addEventListener("click", MoveLogger); // When you click the buttons
     })
+    const waitingfunction = function(ChosenMove1) {
+        CompsChoice = getComputerChoice()
+        
+        if (ChosenMove1 == CompsChoice) { // If option is same as computer
+            Messenger.textContent = "Computer has chosen " + CompsChoice + " while you have chosen " + ChosenMove1 + ". Therefore, DRAW!"
+            Messenger.removeAttribute("class","popup");
+            void Messenger.offsetWidth;
+            Messenger.setAttribute("class","popup");
+        }
+        else if ((ChosenMove1 == "Rock" && CompsChoice == "Paper") || (ChosenMove1 == "Paper" && CompsChoice == "Scissors") || (ChosenMove1 == "Scissors" && CompsChoice == "Rock")) {
+            Messenger.textContent = "Computer has chosen " + CompsChoice + " while you have chosen " + ChosenMove1 + ". Therefore, Computer gets a point!"; compScore++;
+            Messenger.removeAttribute("class","popup");
+            void Messenger.offsetWidth;
+            Messenger.setAttribute("class","popup");
+        }
+        else {
+            Messenger.textContent = "Computer has chosen " + CompsChoice + " while you have chosen " + ChosenMove1 + ". Therefore, you get a point!"; humanScore++; // Adds to human score
+            Messenger.removeAttribute("class","popup");
+            void Messenger.offsetWidth;
+            Messenger.setAttribute("class","popup");
+        }
+        WinandLoseAudio = new Audio("tmwinlose.mp3");
+        if (humanScore == 3 || compScore == 3) { // If a player has hit 3 points
+            if (humanScore > compScore) { // Win!!
+                FinalMessage.setAttribute("style","color: green; font-size: 20px;")
+                FinalMessage.textContent = "Well done, you won!! Against a computer lol"
+                GameHolder.insertBefore(FinalMessage,Messenger)
+                WinandLoseAudio.currentTime = 123.75 // Victory!!
+                WinandLoseAudio.play()
+                setTimeout(() => {WinandLoseAudio.pause();}, 12000);
+            }
+            else { // Game Over
+                FinalMessage.setAttribute("style","color: red; font-size: 20px;")
+                FinalMessage.textContent = "You lost, ggs lol"
+                GameHolder.insertBefore(FinalMessage,Messenger)
+                WinandLoseAudio.currentTime = 457.5 // u failed...
+                WinandLoseAudio.play()
+                setTimeout(() => {WinandLoseAudio.pause();}, 13000); // Plays for 13s
+            }
+            document.querySelectorAll("#buttongroup button").forEach((item) => {
+                ButtonHolder.removeChild(item);
+                item.removeEventListener("mouseover", PointAnim); // When you move over the buttons
+                item.removeEventListener("click", MoveLogger); // When you click the buttons
+            })
+        }
+    }
 }
 
 // Game Starts
 startfunction()
-
-const waitingfunction = function(ChosenMove1) {
-    document.querySelectorAll("#buttongroup button").forEach((item) => {
-        item.setAttribute("class","gray") // Turns buttons gray
-        item.removeEventListener("click", MoveLogger); // Removes events to make guardrails
-        item.removeEventListener("mouseover", PointAnim);
-    })
-    CompsChoice = getComputerChoice()
-    alert(CompsChoice)
-    alert(ChosenMove1)
-    if (ChosenMove1 == CompsChoice) { // If option is same as computer
-        alert("DRAW (Round will be redone)");
-    }
-    else if ((ChosenMove1 == "Rock" && CompsChoice == "Paper") || (ChosenMove1 == "Paper" && CompsChoice == "Scissors") || (ChosenMove1 == "Scissors" && CompsChoice == "Rock")) {
-        alert("Point for Computer"); compScore++; // Adds to computer's score
-    }
-    else {
-        alert("Point for YOU!"); humanScore++; // Adds to human score
-    }
-    GameCheckingFunc()
-}
 
 const getComputerChoice = function() {
     ComputerChooser = Math.random();
@@ -77,24 +106,7 @@ const getComputerChoice = function() {
     else if (ComputerChooser > 0.6666666) { // If number is in the 2/3 - 3/3 range
         ComputerChoice = "Scissors" 
     }
-    Messenger.textContent = "Computer has chosen " + ComputerChoice + "!!"
     return ComputerChoice
 }
-
-const GameCheckingFunc = function() {
-    if (humanScore == 3 || compScore == 3) { // If a player has hit 3 points
-        if (humanScore > compScore) { 
-            alert("You won lmfao");
-        }
-        else {
-            alert("You lost lmfao");
-        }
-    }
-    else {
-        startfunction() // Starts again if no one has hit 3 points yet
-    } 
-    return 
-}
-
 
 
