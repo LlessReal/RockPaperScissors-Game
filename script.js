@@ -73,7 +73,7 @@ const startfunction = function() {
                 GameHolder.insertBefore(FinalMessage,Messenger)
                 WinandLoseAudio.currentTime = 123.75 // Victory!!
                 WinandLoseAudio.play()
-                setTimeout(() => {WinandLoseAudio.pause();}, 12000);
+                setTimeout(() => {WinandLoseAudio.pause();}, 9000);
             }
             else { // Game Over
                 FinalMessage.setAttribute("style","color: red; font-size: 20px;")
